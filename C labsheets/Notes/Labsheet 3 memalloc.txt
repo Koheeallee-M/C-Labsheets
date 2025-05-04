@@ -1,0 +1,12 @@
+In this labsheet, you will work with structs in C. These are
+exercises that you have worked out in C++. However, the
+passing of reference parameters in C is different.
+For any function that needs to perform input on a struct or
+modify an attribute in a struct, use reference parameters.
+
+<stdlib.h>
+<string.h>
+
+Modify the program in question 2 so that it uses an array of pointers to struct.
+Note: In C, we use malloc() to allocate memory and free() to release the
+memory.

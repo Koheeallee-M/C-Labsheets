@@ -1,0 +1,35 @@
+This labsheet introduces you to the use of Linux System calls. A system call is a
+function that resides within the Operating System kernel, that is used either to obtain
+information about data managed by the kernel or to request the OS to do some work.
+In the first part of this first labsheet on system calls, you will get access to some
+attributes of the process and also to obtain information about time. In the second part,
+you will use system calls for performing files I/O.
+The prototype for each system call is usually defined in a header file. To use a system
+call, you need to include the appropriate header file in your program and you also
+need to know what the function header is like so that you can call the function, i.e you
+need to know the return type as well as the type and purpose of each parameter. These
+information are available in the built-in manual man. To see the online manual for a
+system call funct1, for example, You simply type man funct1. Since with Ubuntu
+Linux, man does not automatically include all system calls and commands available,
+you can use the following address to obtain these information:
+http://linux.about.com/od/commands/l/blcmdl_2a.htm.
+
+
+The system calls getpid() and gettppid() respectively return the identifier of a process
+and the identifier of its parent. The synopsis is as given below. The type pid_t can be
+treated as integers. Write a program to display the pid value of a process as well as that of
+its parent. Use the ps –a command to check if the pid displayed by the process is the
+same as that displayed by the ps –a command. You can use the sleep() system call to
+cause the process to sleep for some time to allow you to use the ps -a command.
+Note: Use two terminals: One to run your program and another to type in the
+command ps –a.
+SYNOPSIS
+#include <sys/types.h>
+#include <unistd.h>
+pid_t getpid(void);
+pid_t getppid(void);
+
+gettimeofday(&wheretostore, NULL);
+
+wheretostore.tv_sec = seconds
+tv_usec = microseconds

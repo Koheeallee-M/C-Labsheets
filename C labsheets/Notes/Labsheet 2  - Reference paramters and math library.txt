@@ -1,0 +1,12 @@
+Labsheet 2
+In this labsheet, you will work with functions and arrays in C. For all
+programs requiring you to write functions, your program should also
+contain required codes to test the functions.
+Note: Reference Parameters in C is through the use of pointers.
+
+Note: All Programs must be written in C.
+
+Note: To use the math library, you have to use #include <math.h> in your programs and
+for compilation you have to use
+gcc <program name> -lm –o <object file>
+Eg. gcc prog1.c -lm –o prog1

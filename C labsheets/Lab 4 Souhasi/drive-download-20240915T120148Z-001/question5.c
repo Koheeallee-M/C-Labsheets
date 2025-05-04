@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/stat.h>
+#include<fcntl.h>
+#include<unistd.h>
+
+int main(){
+    int fd,n;
+    char name[20];
+    char sid[10];
+    char dob[10];
+    char gender[7];
+    char mstatus[10];
+    char buffer[256];
+    //opening file for writing or creating(not exist) and assigning access rights
+    fd=open("lab45.dat",O_WRONLY|O_CREAT,S_IRWXU);
+    if (fd<0){
+        printf("Failed to open the file");
+        return 1;
+    }
+    //reading data for 5 students from terminal
+    
+    for (int i=0;i<5;i++){
+        printf("Entering information for student %d:-\n", i+1);
+        printf("Enter name:\n");
+        scanf("%s",name);
+        printf("Enter ID:\n");
+        scanf("%s",sid);
+        printf("Enter DOB:\n");
+        scanf("%s",dob);
+        printf("Enter gender:\n");
+        scanf("%s",gender);
+        printf("Enter marital status:\n");
+        scanf("%s",mstatus);
+    
+     //format data into buffer using snprintf
+     int len = snprintf(buffer, sizeof(buffer),"Name: %s\nID: %s\nDOB: %s\nGender: %s\nMarital status: %s\n\n",name, sid, dob, gender, mstatus);
+
+     // Write the formatted data to the file
+        if (write(fd, buffer, len) != len) {
+            printf("Error writing to file");
+        }
+    }
+    //close file
+    close(fd);
+    printf("Data written to lab45.dat successfully.\n");
+    return 0;
+}

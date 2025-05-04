@@ -1,0 +1,111 @@
+In this part of the labsheet you will work with file I/O system calls. Make use of the
+following system calls.
+1. open
+2. close
+3. read
+4. write
+5. lseek
+For the include statements, use the following:
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+To use a file you first need to open it through the open() system call. The prototypes for
+opening a file is:
+int open(const char *pathname, int flags);
+int open(const char *pathname, int flags, mode_t mode);
+Note: The open call requires: The pathname of the file, the flags which indicate
+whether the file is opened for reading, writing, read & write etc., and the mode,
+which specifies the different types of access rights to the file.
+To open a file for reading, use the first prototype. To open a file for writing, use the
+second one. Note that open() returns an integer. The returned value is called a file
+descriptor and is used for accessing the file.
+In this labsheet, you have been requested to use open(), read(), write()...etc. Do not
+use fopen(), fread(), fwrite().
+The read() and write() system calls use the file descriptor returned by open(). They
+both use pointers to void types, which allow any type of data (including structs) to
+be cast.
+The include file for read and write are: <unistd.h>
+#include <unistd.h>
+
+ssize_t read(int fd, void *buf, size_t count);
+ssize_t write(int fd, const void *buf, size_t count);
+You can take ssize_t to be int.
+An example for opening the file file1.dat for reading 20 bytes is:
+void main(){
+int fd;
+char buf[25];
+fd=open(“file1.dat”,O_RDONLY);
+n=read(fd,buf,20);
+// code for using the data should be inserted here........
+.......
+.......
+close(fd);
+}
+When opening a file for writing, you want the file to be created if it doesn’t exist.
+For that you should use the flag O_WRONLY, ored with O_CREAT as follows:
+fd=open(“file1.dat”,O_WRONLY|O_CREAT);
+You should also give the access rights, through the mode:
+Eg.: fd=open(“file1.dat”,O_WRONLY|O_CREAT, S_IRWXU);
+An example
+void main(){
+int fd;
+char buf[]=”Hello”;
+fd=open(“file1.dat”,O_WRONLY|O_CREAT, S_IRWXU);
+n=write(fd,buf,10);
+.......
+......
+close(fd);
+}
+You are required to explore the uses of the system calls, to find out how to specify
+the size of data to use in read() and write() calls and to find out the values of n in
+each case. You will also need to find out how to read a file until we reach the end of
+the file.
+
+File System Calls in C
+1. open()
+
+    Purpose: Opens a file.
+    Syntax: int open(const char *pathname, int flags, mode_t mode);
+    Parameters:
+        pathname: Path to the file to be opened.
+        flags: Flags specifying the mode of opening (e.g., O_RDONLY, O_WRONLY, O_RDWR).
+        mode: Permissions to be applied to the file (used only when creating a new file).
+
+2. close()
+
+    Purpose: Closes a file.
+    Syntax: int close(int fd);
+    Parameters:
+        fd: File descriptor of the file to be closed.
+
+3. read()
+
+    Purpose: Reads data from a file.
+    Syntax: ssize_t read(int fd, void *buf, size_t count);
+    Parameters:
+        fd: File descriptor of the file to read from.
+        buf: Buffer to store the read data.
+        count: Maximum number of bytes to read.
+    Returns: Number of bytes actually read, or -1 if an error occurs.
+
+4. write()
+
+    Purpose: Writes data to a file.
+    Syntax: ssize_t write(int fd, const void *buf, size_t count);
+    Parameters:
+        fd: File descriptor of the file to write to.
+        buf: Buffer containing the data to write.
+        count: Number of bytes to write.
+    Returns: Number of bytes actually written, or -1 if an error occurs.
+
+5. lseek()
+
+    Purpose: Sets the file position indicator for a file.
+    Syntax: off_t lseek(int fd, off_t offset, int whence);
+    Parameters:
+        fd: File descriptor of the file.
+        offset: Offset to seek to.
+        whence: Specifies the starting point for the offset (e.g., SEEK_SET, SEEK_CUR, SEEK_END).
+    Returns: New file position, or -1 if an error occurs.
+
+Note: These are basic explanations of the file system calls. There are more flags, modes, and error handling options available. Refer to the man pages for more details.

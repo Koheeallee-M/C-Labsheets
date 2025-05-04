@@ -1,0 +1,20 @@
+Labsheet 1
+
+The first labsheet will help you get acquainted with the C programming language and the
+Linux environment. You will essentially need to get yourself acquainted with the
+following in C programming language:
+ Performing Inputs and Outputs.
+ Using conditional statements.
+ Using loops
+Input/Output in C are different from C++. However, conditional statements and
+loops are essentially the same.
+In case the one lab session is not sufficient, you are advised to dedicate some of
+your own free time to get acquainted with the essential programming constructs
+in the C programming language.
+1. Login onto Linux.
+2. Create a directory for your lab works.
+3. Open a text editor. Write the required C-codes that allow you to display the
+message “Hello World” on the screen. Save the file as OS12016.c
+4. Compile and run the program (This will be explained in the lab)
+Henceforth for all programs, in CSE 2022Y, it is understood that the programs
+will be written in C, compiled and run.
